@@ -1,0 +1,52 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="jumbotron">
+    <h1>Let's play some hangman</h1>
+    <p>Click the button to begin</p>
+    <p><a href="/new_game/" class="btn btn-success btn-large">Start new Game »</a></p>
+  </div>
+  <div>
+    {% if games %}
+      <h3>Recent Games</h3>
+      <table class="table">
+        <tr class="{{game.table_row_class}}">
+          <th>Started</th>
+          <th>Word</th>
+          <th>Status</th>
+          <th>Play</th>
+        </tr>
+      {% for game in games %}
+        <tr class="{{game.table_row_class}}">
+          <td>
+            {{game.created|date:"jS F Y H:i"}}
+          </td>
+          <td>
+            {% if game.complete %}
+              {{game.word}}
+            {% else %}
+              {{game.word_masked}}
+            {% endif %}
+          </td>
+          <td>
+            {% if game.user_won %}
+              Victory
+            {% elif game.user_lost %}
+              Failure
+            {% else %}
+              Pending
+            {% endif %}
+          </td>
+          <td>
+            {{game.created|date:"jS F Y H:i"}}
+          </td>
+          <td>
+            {% if not game.complete %}
+              <a href="{% url 'resume_game' game.id %}" class="btn btn-primary btn-xs">Resume</a>
+            {% endif %}
+          </td>
+        </tr>
+      {% endfor %}
+      </table>
+    {% endif %}
+  </div>
+{% endblock %}

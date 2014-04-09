@@ -1,0 +1,63 @@
+{% verbatim %}
+<script id="game-tmpl" type="text">
+  <div id="game-container">
+    <div class="row">
+      <div class="col-md-3">
+        <h3 class="text-center">tries remaining</h3>
+        <p class="text-center text-{{remaining_try_css}}" style="font-size: 500%;">{{remaining_tries}}</p>
+        <div class="progress">
+          <div class="progress-bar progress-bar-{{remaining_try_css}}"
+               role="progressbar" aria-valuenow="{{remaining_tries}}"
+               aria-valuemin="0" aria-valuemax="10" style="width: {{remaining_tries_percent}}%;">
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <pre>
+          {{hangman_picture}}
+        </pre>
+      </div>
+      <div class="col-md-3">
+        <h2 class="text-center">tried letters</h3>
+        <p class="text-center" style="line-height: 2em;">
+        {{#failed_guesses}}
+          <span class='label label-danger' style="font-size: 100%;">{{letter}}</span>
+        {{/failed_guesses}}</p>
+      </div>
+    </div>
+    <hr/>
+    <div class="row" id="instructions">
+      <div id="hangman" class="col-md-4">
+      </div>
+      <div id="hangman" class="col-md-4 text-center">
+        <p class="text-info"><span class="glyphicon glyphicon-info-sign"></span>&nbsp;Guess letters by typing on your keyboard</p>
+      </div>
+      <div id="hangman" class="col-md-4">
+      </div>
+    </div>
+    <hr/>
+    <div class="row">
+      <div id="hangman" class="col-md-3">
+      </div>
+      <div class="col-md-6 text-center">
+          {{#worddata }}
+              <span class='label label-{{css}}' style="font-size: 200%;">{{letter}}</span>&nbsp;
+          {{/worddata}}
+      </div>
+      <div id="hangman" class="col-md-3">
+      </div>
+    </div>
+    <br>
+  </div>
+</script>
+
+<script id="messages-tmpl" type="text">
+  {{#messages}}
+  <div class="alert alert-{{tags}}">
+    <ul class="inline">
+      <li>{{message}}</li>
+    </ul>
+  </div>
+  {{/messages}}
+</script>
+{% endverbatim %}

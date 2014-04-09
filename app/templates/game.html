@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block extra_head %}
+  <script src="{% static 'js/site/game.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+    <div id="game"></div>
+    <form action="" method="post" id="letter-form">
+      <input type="hidden" name="csrfmiddlewaretoken" value="{{csrf_token}}"/>
+    </form>
+    {% include "_game.html" %}
+{% endblock %}

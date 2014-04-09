@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load staticfiles %}
+
+{% block extra_head %}
+  <script src="{% static 'js/site/game.js' %}"></script>
+{% endblock %}
+
+{% block title %}Failure!{% endblock %}
+
+{% block content %}
+  <div class="jumbotron">
+    <div class="row">
+      <div class="col-md-6">
+        <h1 class='text-danger'>Failure!</h1>
+        <p>The answer was <span class="text-info">{{game.word}}</span></p>
+        <p><a href="/new_game/" class="btn btn-primary btn-large">Try again »</a></p>
+      </div>
+      <div class="col-md-6">
+        <img src="{% static 'gifs/garbage.gif' %}"/>
+      </div>
+    </div>
+  </div>
+  <div id="game"></div>
+  <form action="" method="post" id="letter-form">
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{csrf_token}}"/>
+  </form>
+  {% include "_game.html" %}
+{% endblock %}
